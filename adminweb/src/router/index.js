@@ -10,10 +10,10 @@ const routes = [{
         name: 'Main',
         component: Main,
         children: [{
-            path: '/newCategory',
+            path: 'newCategory',
             component: NewCategory,
         }, {
-            path: '/categoryList',
+            path: 'categoryList',
             component: CategoryList
         }]
     },

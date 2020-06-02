@@ -22,8 +22,13 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log(124);
+    async onSubmit() {
+      const res = await this.$http.post("/newCategory", this.form);
+      debugger;
+      this.$message({
+        type: "success",
+        message: "成功了"
+      });
     }
   }
 };

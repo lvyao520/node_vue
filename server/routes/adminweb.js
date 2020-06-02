@@ -13,9 +13,12 @@ const express = require('express')
 
 // 1,创建一个路由容器
 const router = express.Router()
+const Category = require('../models/Category')
     // 2,把各个路由都挂在到路由容器中
-router.post('/', () => {
-
+router.post('/newCategory', async(req, res) => {
+        console.log('nihao')
+        const model = await Category.create(req.body)
+        res.send(model)
     })
     // 3,导出路由
 module.exports = router
