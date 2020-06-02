@@ -2,14 +2,10 @@
   <!-- 知识点：vh单位用来撑满整个高度 -->
   <el-container style="height:100vh">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <!-- 知识点：菜单组件中使用router来搭配index作为路由跳转 -->
-      <el-menu router>
-        <el-submenu>
-          <template slot="title">
-            <i class="el-icon-message"></i>内容管理
-          </template>
+      <el-menu :default-openeds="['main']" @select="select">
+        <el-submenu index="main">
+          <template slot="title">内容管理</template>
           <el-menu-item-group>
-            <template slot="title">分组一</template>
             <el-menu-item index="/newCategory">新建分类</el-menu-item>
             <el-menu-item index="/categoryList">分类列表</el-menu-item>
           </el-menu-item-group>
@@ -27,6 +23,12 @@
 export default {
   data() {
     return {};
+  },
+  methods: {
+    // 知识点：element中菜单使用select事件搭配index来做路由跳转
+    select(index, path) {
+      this.$router.push(index);
+    }
   }
 };
 </script>

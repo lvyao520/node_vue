@@ -1,20 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
-import NewCategory from '../views/NewCategory'
-import CategoryList from '../views/CategoryList'
+const NewCategory = () =>
+    import ('../views/NewCategory')
+const CategoryList = () =>
+    import ('../views/CategoryList')
+const CategoryEdit = () =>
+    import ('../views/CategoryEdit')
 Vue.use(VueRouter)
+
+// 知识点：解决vue-router3.0版本以上的element菜单重复点击报错的问题，还有一种方法就是讲vue-router安装到3.0版本以下
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
 
 const routes = [{
         path: '/',
         name: 'Main',
         component: Main,
         children: [{
-            path: 'newCategory',
+            path: '/newCategory',
             component: NewCategory,
         }, {
-            path: 'categoryList',
+            path: '/categoryList',
             component: CategoryList
+        }, {
+            path: '/categotyEdit/:id',
+            component: CategoryEdit
         }]
     },
 

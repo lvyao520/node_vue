@@ -3,11 +3,11 @@
 
 const express = require('express')
 const app = express()
-    // 知识点：node中设置跨域引用插件cors，一定要注意
+    // 知识点（难点）：node中设置跨域引用插件cors，一定要注意放在第四步引入路由之前
+app.use(require('cors')())
 app.use(express.json())
 var router = require('./routes/adminweb')
     // router(app)
-app.use(require('cors')())
 
 // 4,在index.js使用路由，让app和路由连接起来,现在这个router都是/admin/api下面的子路由
 app.use('/admin/api', router)
