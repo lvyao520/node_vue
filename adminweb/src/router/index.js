@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from '../views/Main.vue'
+const Main = () =>
+    import ('../views/Main')
 const NewCategory = () =>
     import ('../views/NewCategory')
 const CategoryList = () =>
@@ -12,13 +13,14 @@ Vue.use(VueRouter)
 // 知识点：解决vue-router3.0版本以上的element菜单重复点击报错的问题，还有一种方法就是讲vue-router安装到3.0版本以下
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
+    console.log('location:' + location)
     return originalPush.call(this, location).catch(err => err)
 }
 
 const routes = [{
         path: '/',
-        name: 'Main',
         component: Main,
+        redirect: '/newCategory',
         children: [{
             path: '/newCategory',
             component: NewCategory,

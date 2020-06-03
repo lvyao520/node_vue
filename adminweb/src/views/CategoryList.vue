@@ -4,7 +4,7 @@
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
       <el-table-column prop="name" label="分类名称"></el-table-column>
       <el-table-column fixed="right" label="操作" width="200">
-        <template v-slot="scope">
+        <template v-slot:scope>
           <el-button type="primary" size="small" @click="goEdit(scope.row._id)">编辑</el-button>
           <el-button type="warning" size="small" @click="deleteCategory(scope.row)">删除</el-button>
         </template>

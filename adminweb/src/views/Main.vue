@@ -4,7 +4,7 @@
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu :default-openeds="['main']" @select="select">
         <el-submenu index="main">
-          <template slot="title">内容管理</template>
+          <template v-slot:title>内容管理</template>
           <el-menu-item-group>
             <el-menu-item index="/newCategory">新建分类</el-menu-item>
             <el-menu-item index="/categoryList">分类列表</el-menu-item>
