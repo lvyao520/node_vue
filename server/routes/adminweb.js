@@ -18,7 +18,10 @@ const Category = require('../models/Category')
 
 // 保存分类接口
 router.post('/newCategory', async(req, res) => {
-        const model = await Category.create(req.body)
+        const model = await Category.create({
+            parentName: req.body.parentName,
+            name: req.body.name
+        })
         res.send(model)
     })
     // 获取所有分类接口
@@ -35,6 +38,7 @@ router.get('/categorylist/:id', async(req, res) => {
 router.put('/categorylist/:id', async(req, res) => {
         const model = await Category.findById(req.params.id)
         model.name = req.body.name
+        model.parentName = req.body.parentName
         await model.save()
         res.send(model)
 
