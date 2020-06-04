@@ -44,20 +44,23 @@ export default {
       // 知识点:正常的get动态路由请求是写一个路径，把id当做参数{params:{id:id}}这样传给后端
       // 但这个地方由于用node写的接口路由就是直接把id拼在路径后面，所以这里前端的请求需要按照后端
       // 接口来，不用再传参数了
-      const { data } = await this.$http.get("/categorylist/" + id);
+      const { data } = await this.$http.get("/rest/categories/" + id);
       this.form.name = data.name;
       this.form.parentName = data.parentName;
     },
     async finishEdit() {
       // 知识点（难点）：put接口前后端如何写，以及整个put请求步骤
-      const res = await this.$http.put("/categorylist/" + this.id, this.form);
+      const res = await this.$http.put(
+        "/rest/categories/" + this.id,
+        this.form
+      );
       this.$message({
         type: "success",
         message: "保存成功"
       });
     },
     async getParentName() {
-      const { data } = await this.$http.get("/categorylist");
+      const { data } = await this.$http.get("/rest/categories");
       var obj = {};
       var newData = data.reduce((pre, cur) => {
         if (!obj[cur.parentName]) {

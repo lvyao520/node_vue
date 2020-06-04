@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const res = await this.$http.post("/categorylist", this.form);
+      const res = await this.$http.post("/rest/categories", this.form);
       this.$message({
         type: "success",
         message: "成功了"
@@ -49,7 +49,7 @@ export default {
       console.log("改变了");
     },
     async getParentName() {
-      const { data } = await this.$http.get("/categorylist");
+      const { data } = await this.$http.get("rest/categories");
       // 知识点（重点）：数组中对象去重，要搞清楚var obj = {}的思想,
       // 和购物车添加商品去重一样，都是用换一个阀门去控制是否去重，只不过购物车中的
       // 去重的元素一模一样，这个里面只是根据元素里面的一个属性来去重

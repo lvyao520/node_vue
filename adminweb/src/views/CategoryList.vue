@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     async getCategoryList() {
-      const { data } = await this.$http.get("/categorylist");
+      const { data } = await this.$http.get("/rest/categories");
       this.tableData = data;
     },
     goEdit(id) {
@@ -49,7 +49,7 @@ export default {
       this.name = row.name;
     },
     async confirmDelete() {
-      await this.$http.delete("/categorylist/" + this.id);
+      await this.$http.delete("/rest/categories/" + this.id);
       this.dialogVisible = false;
       this.$message({
         type: "success",

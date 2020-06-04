@@ -10,7 +10,7 @@ var router = require('./routes/adminweb')
     // router(app)
 
 // 4,在index.js使用路由，让app和路由连接起来,现在这个router都是/admin/api下面的子路由
-app.use('/admin/api', router)
+app.use('/admin/api/rest/:resource', router)
 
 
 require('./plugins/db')(app)
