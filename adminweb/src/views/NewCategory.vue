@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const res = await this.$http.post("/newCategory", this.form);
+      const res = await this.$http.post("/categorylist", this.form);
       this.$message({
         type: "success",
         message: "成功了"

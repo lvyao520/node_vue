@@ -17,7 +17,7 @@ const Category = require('../models/Category')
     // 2,把各个路由都挂在到路由容器中
 
 // 保存分类接口
-router.post('/newCategory', async(req, res) => {
+router.post('/categorylist', async(req, res) => {
         const model = await Category.create({
             parentName: req.body.parentName,
             name: req.body.name
