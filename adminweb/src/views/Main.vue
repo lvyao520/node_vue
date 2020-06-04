@@ -9,6 +9,10 @@
             <el-menu-item index="/newCategory">新建分类</el-menu-item>
             <el-menu-item index="/categoryList">分类列表</el-menu-item>
           </el-menu-item-group>
+          <el-menu-item-group>
+            <el-menu-item index="/itemEdit">新建物品</el-menu-item>
+            <el-menu-item index="/itemList">物品列表</el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
       </el-menu>
     </el-aside>

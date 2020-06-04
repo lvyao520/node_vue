@@ -49,7 +49,7 @@ export default {
       this.name = row.name;
     },
     async confirmDelete() {
-      await this.$http.delete("/rest/categories/" + this.id);
+      await this.$http.delete("/categories/" + this.id);
       this.dialogVisible = false;
       this.$message({
         type: "success",

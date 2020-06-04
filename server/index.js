@@ -9,14 +9,16 @@ app.use(express.json())
 var router = require('./routes/adminweb')
     // router(app)
 
-// 4,在index.js使用路由，让app和路由连接起来,现在这个router都是/admin/api下面的子路由
-app.use('/admin/api/rest/:resource', router)
+// 4,在index.js使用路由，让app和路由连接起来,现在这个router都是/admin/api/rest下面的子路由
+app.use('/admin/api/rest/:resource', async(req, res, next) => {
+    //知识点（重点）：通用接口curd的写法
+    const modelName = require('inflection').classify(req.params.resource)
+    req.Model = require('./models/' + modelName)
+    next()
+}, router)
 
 
 require('./plugins/db')(app)
-
-
-
 
 
 app.listen(3000, () => {

@@ -8,6 +8,10 @@ const CategoryList = () =>
     import ('../views/CategoryList')
 const CategoryEdit = () =>
     import ('../views/CategoryEdit')
+const ItemEdit = () =>
+    import ('../views/ItemEdit')
+const ItemList = () =>
+    import ('../views/ItemList')
 Vue.use(VueRouter)
 
 // 知识点：解决vue-router3.0版本以上的element菜单重复点击报错的问题，还有一种方法就是讲vue-router安装到3.0版本以下
@@ -22,15 +26,30 @@ const routes = [{
         component: Main,
         redirect: '/newCategory',
         children: [{
-            path: '/newCategory',
-            component: NewCategory,
-        }, {
-            path: '/categoryList',
-            component: CategoryList
-        }, {
-            path: '/categotyEdit/:id',
-            component: CategoryEdit
-        }]
+                path: '/newCategory',
+                component: NewCategory,
+            }, {
+                path: '/categoryList',
+                component: CategoryList
+            }, {
+                path: '/categotyEdit/:id',
+                component: CategoryEdit
+            }, {
+                path: '/itemEdit',
+                component: ItemEdit,
+
+            },
+            {
+                path: '/itemList',
+                component: ItemList,
+
+            },
+            {
+                path: '/itemList/:id',
+                component: ItemEdit,
+
+            }
+        ]
     },
 
 ]

@@ -12,41 +12,48 @@
 const express = require('express')
 
 // 1,创建一个路由容器
-const router = express.Router()
-const Category = require('../models/Category')
+const router = express.Router({
+        mergeParams: true
+    })
+    // const Category = require('../models/Category')
     // 2,把各个路由都挂在到路由容器中
 
 // 保存分类接口
-router.post('/categorylist', async(req, res) => {
-        const model = await Category.create({
+router.post('/', async(req, res) => {
+        const model = await req.Model.create({
             parentName: req.body.parentName,
             name: req.body.name
         })
         res.send(model)
     })
     // 获取所有分类接口
-router.get('/categorylist', async(req, res) => {
-        const model = await Category.find().limit(10)
+router.get('/', async(req, res) => {
+        const model = await req.Model.find().limit(10)
         res.send(model)
     })
     // 获取某个编辑分类接口
-router.get('/categorylist/:id', async(req, res) => {
-        const model = await Category.findById(req.params.id)
+router.get('/:id', async(req, res) => {
+        const model = await req.Model.findById(req.params.id)
         res.send(model)
     })
-    //修改某个分类接口
-router.put('/categorylist/:id', async(req, res) => {
-        const model = await Category.findById(req.params.id)
-        model.name = req.body.name
-        model.parentName = req.body.parentName
-        await model.save()
+    //修改某个分类接口     知识点（重点）：相比注释用判断还有一种简单的写法,要掌握findByIdAndUpdate(）的用法
+router.put('/:id', async(req, res) => {
+        // const model = await req.Model.findById(req.params.id)
+        // if (req.params.parentName) {
+        //     model.parentName = req.body.parentName
+        // } else {
+        //     model.icon = req.body.icon
+        // }
+        // model.name = req.body.name
+        // await model.save()
+        // res.send(model)
+        const model = await req.Model.findByIdAndUpdate(req.params.id, req.body)
         res.send(model)
-
     })
     // 删除某个分类接口
-router.delete('/categorylist/:id', async(req, res) => {
-        const model = await Category.findById(req.params.id)
-        await Category.deleteOne(model)
+router.delete('/:id', async(req, res) => {
+        const model = await req.Model.findById(req.params.id)
+        await req.Model.deleteOne(model)
             // 知识点：后端接口一定要返回信息
         res.send({
             success: true
