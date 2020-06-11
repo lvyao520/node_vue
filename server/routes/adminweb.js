@@ -47,6 +47,7 @@ router.put('/:id', async(req, res) => {
         // model.name = req.body.name
         // await model.save()
         // res.send(model)
+        await req.Model.findByIdAndUpdate()
         const model = await req.Model.findByIdAndUpdate(req.params.id, req.body)
         res.send(model)
     })
